@@ -68,4 +68,4 @@ jobs:
       env:
         GHR_COMPRESS: zip
         GHR_PATH: target/release/rustatic.exe
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
