@@ -64,11 +64,11 @@ fn main() {
                     request.respond(Response::from_string("Could not find indexfile").with_status_code(StatusCode::from(404))).unwrap();
                 }
             } else {
-            //request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
+                // TODO show directory listing
                 request.respond(Response::from_string("directory")).unwrap();
             }
         } else {
-            request.respond(Response::from_string("We are confused.")).unwrap(); // TODO add 500 error
+            request.respond(Response::from_string("We are confused.").with_status_code(StatusCode::from(500))).unwrap();
         }
     }
 }
