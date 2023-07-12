@@ -26,3 +26,39 @@ jobs:
         name: rustatic-linux-release
         path: target/release/rustatic
 
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --release --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: list
+      run: ls -l target/release
+
+    #- name: macOS binary
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: rustatic-macos-release
+    #    path: target/release/rustatic
+
+  build-window:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --release --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: list
+      run: ls -l target/release
+
+    #- name: macOS binary
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: rustatic-macos-release
+    #    path: target/release/rustatic
+
