@@ -7,6 +7,7 @@ description = "Web server for static site used primarily locally during developm
 keywords = ["cli", "web", "static"]
 categories = ["web-programming::http-server"]
 readme = "README.md"
+repository = "https://github.com/szabgab/rustatic/"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
