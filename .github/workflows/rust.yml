@@ -66,6 +66,7 @@ jobs:
     needs: [build-windows]
     runs-on: ubuntu-latest
 
+    steps:
     - name: MS Windows binary
       uses: actions/download-artifact@v3
       with:
