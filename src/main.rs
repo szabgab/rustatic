@@ -1,9 +1,23 @@
 use tiny_http::{Response, Server};
+use clap::Parser;
+
+#[derive(Parser)]
+struct Cli {
+    #[arg(long, default_value = "127.0.0.1")]
+    host: String,
+    #[arg(long, default_value = "5000")]
+    port: String,
+
+    #[arg(default_value = ".")]
+    path: std::path::PathBuf,
+}
+
 
 fn main() {
-    let port = "5000";
-    let host = "127.0.0.1";
-    let server_str = format!("{host}:{port}");
+    let args = Cli::parse();
+    dbg!(&args.host);
+
+    let server_str = format!("{}:{}", &args.host, &args.port);
 
     let server = Server::http(&server_str).expect("Failed to start demo server.");
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");

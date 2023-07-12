@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 tiny_http = "0.12"
+clap = { version = "4.3", features = ["derive"] }
