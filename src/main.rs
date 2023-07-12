@@ -1,3 +1,4 @@
+use std::env;
 use std::fs::File;
 use std::str::FromStr;
 
@@ -5,7 +6,10 @@ use ascii::AsciiString;
 use tiny_http::{Response, Server, StatusCode, Header, HeaderField};
 use clap::Parser;
 
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 #[derive(Parser)]
+#[command(version)]
 struct Cli {
     #[arg(long, default_value = "127.0.0.1")]
     host: String,
@@ -28,6 +32,7 @@ fn main() {
     let server_str = format!("{}:{}", &args.host, &args.port);
 
     let server = Server::http(&server_str).expect("Failed to start demo server.");
+    println!("Running version {VERSION}");
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");
     for request in server.incoming_requests() {
         //dbg!(request.method());

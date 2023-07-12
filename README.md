@@ -12,6 +12,7 @@ Rustatic provides this service.
 git clone https://github.com/szabgab/rustatic
 cd rustatic
 cargo run -- --help
+cargo run -- --version
 
 
 cargo run -- --path /some/path/where/you/have/your/static/site --host 127.0.0.1 --port 5000
