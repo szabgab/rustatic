@@ -4,24 +4,55 @@ When locally developing a static web site it can quite useful to be able to run 
 
 Rustatic provides this service.
 
-## How to use it:
 
-* Install Rust
+## Installation
+
+### General public
+
+* We will prepare binary executables for you.
+
+Every command line parameter has a default value
+
+* `--path` defaults to the current directory
+* `--host` defaults to 127.0.0.1
+* `--port` defaults to 5000
+* `--indexfile` defaults to nothin. if provided then accessing a directory will yield the contenct of this file. Usually people have `--indexfile index.html`.
+
+
+### Rust users
+
+* If you have Rust installed you can install `rustatic` using the following command:
+
+```
+cargo install ruststatic
+```
+
+* Then you can run
+
+```
+rustatic --help
+rustatic --version
+rustatic --path /path/to/html --host 127.0.0.1 --port 5000
+```
+
+### Developers
+
+If you would like to help with the development of `rustatic` you can clone the repo and run the program without further installation:
 
 ```
 git clone https://github.com/szabgab/rustatic
 cd rustatic
+```
+
+Then you can run the command like this:
+
+```
 cargo run -- --help
 cargo run -- --version
 
 
-cargo run -- --path /some/path/where/you/have/your/static/site --host 127.0.0.1 --port 5000
+cargo run -- --path /path/to/html --host 127.0.0.1 --port 5000
 ```
-
-* `path` defaults to the current directory
-* `host` defaults to 127.0.0.1
-* `port` defaults to 5000
-* `indexfile` if provided then accessing a directory will yield the contenct of this file. Usually people have `index.html`.
 
 ## TODO
 
