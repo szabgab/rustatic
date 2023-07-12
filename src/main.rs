@@ -54,7 +54,7 @@ fn main() {
                 if path.exists() && path.is_file() {
                     request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
                 } else {
-                    request.respond(Response::from_string("Could not find indexfile")).unwrap(); // TODO add error
+                    request.respond(Response::from_string("Could not find indexfile").with_status_code(StatusCode::from(404))).unwrap();
                 }
             } else {
             //request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
