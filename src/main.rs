@@ -1,6 +1,6 @@
 use std::fs::File;
 
-use tiny_http::{Response, Server};
+use tiny_http::{Response, Server, StatusCode};
 use clap::Parser;
 
 #[derive(Parser)]
@@ -44,7 +44,7 @@ fn main() {
         // else return error
 
         if !path.exists() {
-            request.respond(Response::from_string("File Not found")).unwrap(); // TODO add 404
+            request.respond(Response::from_string("File Not found").with_status_code(StatusCode::from(404))).unwrap();
         } else if path.is_file() {
             request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
         } else if path.is_dir() {
