@@ -44,7 +44,7 @@ jobs:
         name: rustatic-macos-release
         path: target/release/rustatic
 
-  build-window:
+  build-windows:
     runs-on: windows-latest
 
     steps:
