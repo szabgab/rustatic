@@ -8,5 +8,6 @@ description = "Web server for static site used primarily locally during developm
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+ascii = "1.1"
 tiny_http = "0.12"
 clap = { version = "4.3", features = ["derive"] }

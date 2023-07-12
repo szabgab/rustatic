@@ -1,6 +1,8 @@
 use std::fs::File;
+use std::str::FromStr;
 
-use tiny_http::{Response, Server, StatusCode};
+use ascii::AsciiString;
+use tiny_http::{Response, Server, StatusCode, Header, HeaderField};
 use clap::Parser;
 
 #[derive(Parser)]
@@ -49,7 +51,12 @@ fn main() {
             request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
         } else if path.is_dir() {
             // TODO if path does not end in / redirect to the same path with /
-            if args.indexfile != "" {
+            if !request.url().ends_with("/") {
+                dbg!("fixing path");
+                let new_url = format!("{}/", request.url());
+                let header = Header {field: HeaderField::from_str("Location").unwrap(), value: AsciiString::from_ascii(new_url).unwrap()};
+                request.respond(Response::from_string("dir").with_status_code(StatusCode::from(301)).with_header(header)).unwrap();
+            } else if args.indexfile != "" {
                 let path = path.join(&args.indexfile);
                 if path.exists() && path.is_file() {
                     request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type

@@ -218,6 +218,7 @@ dependencies = [
 name = "rustatic"
 version = "0.1.0"
 dependencies = [
+ "ascii",
  "clap",
  "tiny_http",
 ]
