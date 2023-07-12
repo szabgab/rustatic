@@ -38,11 +38,11 @@ jobs:
     - name: list
       run: ls -l target/release
 
-    #- name: macOS binary
-    #  uses: actions/upload-artifact@v3
-    #  with:
-    #    name: rustatic-macos-release
-    #    path: target/release/rustatic
+    - name: macOS binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: rustatic-macos-release
+        path: target/release/rustatic
 
   build-window:
     runs-on: windows-latest
@@ -56,9 +56,9 @@ jobs:
     - name: list
       run: ls -l target/release
 
-    #- name: macOS binary
-    #  uses: actions/upload-artifact@v3
-    #  with:
-    #    name: rustatic-macos-release
-    #    path: target/release/rustatic
+    - name: MS Windows binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: rustatic-windows-release
+        path: target/release/rustatic.exe
 
