@@ -56,6 +56,13 @@ cargo run -- --path /path/to/html --host 127.0.0.1 --port 5000
 cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /path/to/html
 ```
 
+## Release and publish
+
+* Update version number in Cargo.toml
+* git commit
+* git tag
+* cargo publish
+
 ## TODO
 
 * create executable that people can download so no need to clone from repo
