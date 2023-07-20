@@ -80,8 +80,28 @@ fn main() {
                     request.respond(Response::from_string("Could not find indexfile").with_status_code(StatusCode::from(404))).unwrap();
                 }
             } else {
-                // TODO show directory listing
-                request.respond(Response::from_string("directory")).unwrap();
+                let mut html = "".to_string();
+                html += "<ul>";
+                for entry in path.read_dir().expect("read_dir call failed") {
+                    if let Ok(entry) = entry {
+                        if entry.path().is_file() || entry.path().is_dir() {
+                            html += "<li><a href=\"";
+                            html += &entry.file_name().into_string().unwrap();
+                            html += "\">";
+                            html += &entry.file_name().into_string().unwrap();
+                            html += "</a>";
+                            html += "</li>";
+                        } else {
+                            html += "<li>";
+                            html += &entry.file_name().into_string().unwrap();
+                            html += "</li>";
+                        }
+                    }
+                }
+                html += "</ul>";
+                dbg!(&html);
+                let header = Header {field: HeaderField::from_str("Content-type").unwrap(), value: AsciiString::from_ascii("text/html").unwrap()};
+                request.respond(Response::from_string(&html).with_header(header)).unwrap();
             }
         } else {
             request.respond(Response::from_string("We are confused.").with_status_code(StatusCode::from(500))).unwrap();
