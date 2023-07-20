@@ -20,6 +20,9 @@ struct Cli {
     #[arg(long, default_value = "")]
     indexfile: String,
 
+    #[arg(long)]
+    nice: bool,
+
     #[arg(long, default_value = ".")]
     path: std::path::PathBuf,
 }
@@ -42,7 +45,13 @@ fn main() {
         //dbg!(&url);
         //dbg!(&args.path);
         let path = args.path.join(&url);
-        //dbg!(&path);
+        let mut p = path.clone().into_os_string();
+        p.push(".html");
+        let html_path :std::path::PathBuf = p.into();
+
+        dbg!(&path);
+        dbg!(&html_path);
+        dbg!(&args.nice);
         // if path is a file serve it
         // if path is a directory then
         //     list the directory content
@@ -50,7 +59,9 @@ fn main() {
         //     return some error (do we need this?)
         // else return error
 
-        if !path.exists() {
+        if args.nice && html_path.is_file() {
+            request.respond(Response::from_file(File::open(&html_path).unwrap())).unwrap();
+        } else if !path.exists() {
             request.respond(Response::from_string("File Not found").with_status_code(StatusCode::from(404))).unwrap();
         } else if path.is_file() {
             request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type

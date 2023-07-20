@@ -17,6 +17,7 @@ Every command line parameter has a default value
 * `--host` defaults to 127.0.0.1
 * `--port` defaults to 5000
 * `--indexfile` defaults to nothin. if provided then accessing a directory will yield the contenct of this file. Usually people have `--indexfile index.html`.
+* `--nice` Server .html files with the extension. If the user accessed `/path/page`  return the `/path/page.html` file.
 
 
 ### Rust users
@@ -52,6 +53,7 @@ cargo run -- --version
 
 
 cargo run -- --path /path/to/html --host 127.0.0.1 --port 5000
+cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /path/to/html
 ```
 
 ## TODO
