@@ -9,15 +9,28 @@ Rustatic provides this service.
 
 ### General public
 
-* We will prepare binary executables for you.
+* On the right-hand side of the [GitHub repository](https://github.com/szabgab/rustatic) you can find "Releases".
+* Download the latest one.
+
+Then run
+
+```
+rustatic
+```
+
+or with more parameters run:
+
+```
+rustatic --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /path/to/html
+```
 
 Every command line parameter has a default value
 
 * `--path` defaults to the current directory
 * `--host` defaults to 127.0.0.1
 * `--port` defaults to 5000
-* `--indexfile` defaults to nothin. if provided then accessing a directory will yield the contenct of this file. Usually people have `--indexfile index.html`.
-* `--nice` Server .html files with the extension. If the user accessed `/path/page`  return the `/path/page.html` file.
+* `--indexfile` defaults to nothing. If provided then accessing a directory will yield the contenct of this file. Usually people have `--indexfile index.html`.
+* `--nice` Server .html files with the extension. If the user accessed `/path/page`  rustatic will return the `/path/page.html` file.
 
 
 ### Rust users
@@ -52,7 +65,6 @@ cargo run -- --help
 cargo run -- --version
 
 
-cargo run -- --path /path/to/html --host 127.0.0.1 --port 5000
 cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /path/to/html
 ```
 
