@@ -64,9 +64,9 @@ fn main() {
         } else if !path.exists() {
             request.respond(Response::from_string("File Not found").with_status_code(StatusCode::from(404))).unwrap();
         } else if path.is_file() {
-            request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
+            request.respond(Response::from_file(File::open(&path).unwrap())).unwrap();
         } else if path.is_dir() {
-            // TODO if path does not end in / redirect to the same path with /
+            // if path does not end in / redirect to the same path with /
             if !request.url().ends_with("/") {
                 dbg!("fixing path");
                 let new_url = format!("{}/", request.url());
@@ -75,7 +75,7 @@ fn main() {
             } else if args.indexfile != "" {
                 let path = path.join(&args.indexfile);
                 if path.exists() && path.is_file() {
-                    request.respond(Response::from_file(File::open(&path).unwrap())).unwrap(); // TODO set mime-type
+                    request.respond(Response::from_file(File::open(&path).unwrap())).unwrap();
                 } else {
                     request.respond(Response::from_string("Could not find indexfile").with_status_code(StatusCode::from(404))).unwrap();
                 }
