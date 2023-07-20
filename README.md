@@ -60,7 +60,7 @@ cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /
 
 * Update version number in Cargo.toml
 * git commit
-* git tag
+* git tag   (`git tag -a v0.2.2 -m "publish version v0.2.2"`)
 * cargo publish
 
 ## TODO
