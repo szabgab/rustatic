@@ -21,8 +21,8 @@ fn main() {
     let html = template.render(&globals).unwrap();
 
 
-    fs::create_dir_all("_site").expect("could no create folder");
-    let mut file = File::create("_site/index.html").unwrap();
+    fs::create_dir_all("../_site").expect("could no create folder");
+    let mut file = File::create("../_site/index.html").unwrap();
     writeln!(&mut file, "{}", html).unwrap();
 
 }
