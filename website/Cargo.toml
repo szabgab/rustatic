@@ -6,5 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-markdown = "0.3"
+# markdown = "0.3"
+markdown = { git = "https://github.com/wooorm/markdown-rs.git", rev = "56cd834cf88a58d3429b4b75489f161d57b28eaa" }
 liquid = "0.26.4"
