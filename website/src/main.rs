@@ -7,6 +7,9 @@ use std::io::Write;
 fn main() {
     let content = markdown::file_to_html(Path::new("../README.md")).unwrap();
     //println!("{}", content);
+    let content = content.replace("<h1 ", "<h1 class=\"title\" ");
+    let content = content.replace("<h2 ", "<h2 class=\"title is-4\" ");
+    let content = content.replace("<h3 ", "<h3 class=\"title is-5\" ");
 
     let template = liquid::ParserBuilder::with_stdlib()
         .build()
