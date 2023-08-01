@@ -38,7 +38,7 @@ Every command line parameter has a default value
 * If you have Rust installed you can install `rustatic` using the following command:
 
 ```
-cargo install ruststatic
+cargo install rustatic
 ```
 
 * Then you can run
