@@ -73,12 +73,26 @@ jobs:
         name: rustatic-windows-release
         path: windows/rustatic.exe
 
+    - name: Linux binary
+      uses: actions/download-artifact@v3
+      with:
+        name: rustatic-linux-release
+        path: linux/rustatic-linux
 
-    - name: Release
+
+    - name: Release Windows
       uses: fnkr/github-action-ghr@v1
       if: startsWith(github.ref, 'refs/tags/')
       env:
         GHR_COMPRESS: zip
         GHR_PATH: windows/rustatic.exe
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+    - name: Release Linux
+      uses: fnkr/github-action-ghr@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        GHR_COMPRESS: zip
+        GHR_PATH: linux/rustatic-linux
         GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
