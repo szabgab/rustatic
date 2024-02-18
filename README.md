@@ -1,6 +1,6 @@
 # Rustatic - Rust Static server
 
-When locally developing a static web site it can quite useful to be able to run a small web server and be able to see the results.
+When locally developing a static web site it can be quite useful to be able to run a small web server and be able to see the results.
 
 Rustatic provides this service.
 
@@ -9,7 +9,7 @@ Rustatic provides this service.
 
 ### General public
 
-* On the right-hand side of the [GitHub repository](https://github.com/szabgab/rustatic) you can find "Releases".
+* On the right-hand side of the [GitHub repository](https://github.com/szabgab/rustatic) you can find [Releases](https://github.com/szabgab/rustatic/releases).
 * Download the latest one.
 
 Then run
