@@ -69,9 +69,7 @@ fn main() {
                 )
                 .unwrap();
         } else if path.is_file() {
-            request
-                .respond(Response::from_file(File::open(&path).unwrap()))
-                .unwrap();
+            request.respond(get_response(&path)).unwrap();
         } else if path.is_dir() {
             // if path does not end in / redirect to the same path with /
             if !request.url().ends_with("/") {
@@ -140,4 +138,23 @@ fn main() {
                 .unwrap();
         }
     }
+}
+
+fn get_response(path: &std::path::PathBuf) -> Response<File> {
+    let content_type = match path.extension() {
+        Some(extension) => match extension.to_str() {
+            Some(ext) => match ext {
+                "json" => "application/json",
+                _ => "text/html",
+            },
+            None => "text/html",
+        },
+        None => "text/html",
+    };
+
+    let header = Header {
+        field: HeaderField::from_str("Content-type").unwrap(),
+        value: AsciiString::from_ascii(content_type).unwrap(),
+    };
+    Response::from_file(File::open(&path).unwrap()).with_header(header)
 }
