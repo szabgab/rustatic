@@ -33,6 +33,7 @@ absolute_paths = "allow"                   # I actually like absoulte pathes whe
 blanket_clippy_restriction_lints = "allow" # It is intentional for extreme clippy.
 implicit_return = "allow"                  # This is the rust-way, isn't it?
 print_stdout = "allow"                     # Wee need to print stuff to the console.
+single_call_fn = "allow"                   # We want shorter functions even if we only use them in one place.
 
 
 arithmetic_side_effects = "allow"
@@ -43,7 +44,6 @@ manual_string_new = "allow"
 min_ident_chars = "allow"
 missing_docs_in_private_items = "allow"
 option_if_let_else = "allow"
-single_call_fn = "allow"
 std_instead_of_core = "allow"
 string_slice = "allow"
 too_many_lines = "allow"
