@@ -29,18 +29,17 @@ restriction  = { priority = -1, level = "deny" }
 style        = { priority = -1, level = "deny" }
 suspicious   = { priority = -1, level = "deny" }
 
-absolute_paths = "allow"   # I actually like absoulte pathes when using code
-print_stdout = "allow"     # Wee need to print stuff to the console
-
+absolute_paths = "allow"                   # I actually like absoulte pathes when using code.
+blanket_clippy_restriction_lints = "allow" # It is intentional for extreme clippy.
+implicit_return = "allow"                  # This is the rust-way, isn't it?
+print_stdout = "allow"                     # Wee need to print stuff to the console.
 
 
 arithmetic_side_effects = "allow"
-blanket_clippy_restriction_lints = "allow"
 branches_sharing_code = "allow"
 dbg_macro = "allow"
 default_numeric_fallback = "allow"
 expect_used = "allow"
-implicit_return = "allow"
 indexing_slicing = "allow"
 manual_string_new = "allow"
 min_ident_chars = "allow"
