@@ -1,6 +1,6 @@
 [package]
 name = "rustatic"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Web server for static site used primarily locally during development"
