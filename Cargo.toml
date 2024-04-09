@@ -29,7 +29,11 @@ restriction  = { priority = -1, level = "deny" }
 style        = { priority = -1, level = "deny" }
 suspicious   = { priority = -1, level = "deny" }
 
-absolute_paths = "allow"
+absolute_paths = "allow"   # I actually like absoulte pathes when using code
+print_stdout = "allow"     # Wee need to print stuff to the console
+
+
+
 arithmetic_side_effects = "allow"
 blanket_clippy_restriction_lints = "allow"
 branches_sharing_code = "allow"
@@ -42,7 +46,6 @@ manual_string_new = "allow"
 min_ident_chars = "allow"
 missing_docs_in_private_items = "allow"
 option_if_let_else = "allow"
-print_stdout = "allow"
 shadow_reuse = "allow"
 single_call_fn = "allow"
 std_instead_of_core = "allow"
