@@ -105,7 +105,7 @@ fn main() {
                         .unwrap();
                 }
             } else {
-                let mut html = "".to_string();
+                let mut html = String::new();
                 html += "<ul>";
                 let Ok(dh) = path.read_dir() else {
                     return request
