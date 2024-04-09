@@ -125,9 +125,8 @@ fn main() {
                     field: HeaderField::from_str("Content-type").unwrap(),
                     value: AsciiString::from_ascii("text/html").unwrap(),
                 };
-                request
-                    .respond(Response::from_string(&html).with_header(header))
-                    .unwrap();
+                let response = Response::from_string(&html).with_header(header);
+                request.respond(response).unwrap();
             }
         } else {
             request
