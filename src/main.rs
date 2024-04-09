@@ -1,5 +1,6 @@
 use std::env;
 use std::fs::File;
+use std::path::Path;
 use std::str::FromStr;
 
 use ascii::AsciiString;
@@ -94,38 +95,7 @@ fn main() {
                         .unwrap();
                 }
             } else {
-                let mut html = String::new();
-                html += "<ul>";
-                let Ok(dh) = path.read_dir() else {
-                    return request
-                        .respond(
-                            Response::from_string("Could not read content of the folder.")
-                                .with_status_code(StatusCode::from(500)),
-                        )
-                        .unwrap();
-                };
-
-                for entry in dh.flatten() {
-                    if entry.path().is_file() || entry.path().is_dir() {
-                        html += "<li><a href=\"";
-                        html += &entry.file_name().into_string().unwrap();
-                        html += "\">";
-                        html += &entry.file_name().into_string().unwrap();
-                        html += "</a>";
-                        html += "</li>";
-                    } else {
-                        html += "<li>";
-                        html += &entry.file_name().into_string().unwrap();
-                        html += "</li>";
-                    }
-                }
-                html += "</ul>";
-                // dbg!(&html);
-                let header = Header {
-                    field: HeaderField::from_str("Content-type").unwrap(),
-                    value: AsciiString::from_ascii("text/html").unwrap(),
-                };
-                let response = Response::from_string(&html).with_header(header);
+                let response = directory_listing(&path);
                 request.respond(response).unwrap();
             }
         } else {
@@ -137,6 +107,37 @@ fn main() {
                 .unwrap();
         }
     }
+}
+
+fn directory_listing(path: &Path) -> Response<std::io::Cursor<Vec<u8>>> {
+    let mut html = String::new();
+    html += "<ul>";
+    let Ok(dh) = path.read_dir() else {
+        return Response::from_string("Could not read content of the folder.")
+            .with_status_code(StatusCode::from(500));
+    };
+
+    for entry in dh.flatten() {
+        if entry.path().is_file() || entry.path().is_dir() {
+            html += "<li><a href=\"";
+            html += &entry.file_name().into_string().unwrap();
+            html += "\">";
+            html += &entry.file_name().into_string().unwrap();
+            html += "</a>";
+            html += "</li>";
+        } else {
+            html += "<li>";
+            html += &entry.file_name().into_string().unwrap();
+            html += "</li>";
+        }
+    }
+    html += "</ul>";
+    // dbg!(&html);
+    let header = Header {
+        field: HeaderField::from_str("Content-type").unwrap(),
+        value: AsciiString::from_ascii("text/html").unwrap(),
+    };
+    Response::from_string(&html).with_header(header)
 }
 
 fn redirect_with_trailing_slash(
