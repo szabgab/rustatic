@@ -103,7 +103,16 @@ fn main() {
             } else {
                 let mut html = "".to_string();
                 html += "<ul>";
-                for entry in path.read_dir().expect("read_dir call failed") {
+                let Ok(dh) = path.read_dir() else {
+                    return request
+                        .respond(
+                            Response::from_string("Could not read content of the folder.")
+                                .with_status_code(StatusCode::from(500)),
+                        )
+                        .unwrap();
+                };
+
+                for entry in dh {
                     if let Ok(entry) = entry {
                         if entry.path().is_file() || entry.path().is_dir() {
                             html += "<li><a href=\"";
