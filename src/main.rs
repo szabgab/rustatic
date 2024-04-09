@@ -43,7 +43,7 @@ fn main() {
         let url = &request.url()[1..]; // remove leading slash
                                        //dbg!(&url);
                                        //dbg!(&args.path);
-        let path = args.path.join(&url);
+        let path = args.path.join(url);
         let mut p = path.clone().into_os_string();
         p.push(".html");
         let html_path: std::path::PathBuf = p.into();
@@ -72,7 +72,7 @@ fn main() {
             request.respond(get_response(&path)).unwrap();
         } else if path.is_dir() {
             // if path does not end in / redirect to the same path with /
-            if !request.url().ends_with("/") {
+            if !request.url().ends_with('/') {
                 dbg!("fixing path");
                 let new_url = format!("{}/", request.url());
                 let header = Header {
@@ -86,7 +86,7 @@ fn main() {
                             .with_header(header),
                     )
                     .unwrap();
-            } else if args.indexfile != "" {
+            } else if !args.indexfile.is_empty() {
                 let path = path.join(&args.indexfile);
                 if path.exists() && path.is_file() {
                     request
@@ -157,5 +157,5 @@ fn get_response(path: &std::path::PathBuf) -> Response<File> {
         field: HeaderField::from_str("Content-type").unwrap(),
         value: AsciiString::from_ascii(content_type).unwrap(),
     };
-    Response::from_file(File::open(&path).unwrap()).with_header(header)
+    Response::from_file(File::open(path).unwrap()).with_header(header)
 }
