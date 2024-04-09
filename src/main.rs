@@ -33,7 +33,11 @@ fn main() {
 
     let server_str = format!("{}:{}", &args.host, &args.port);
 
-    let server = Server::http(&server_str).expect("Failed to start demo server.");
+    let Ok(server) = Server::http(&server_str) else {
+        println!("Could not start the server. Is the port maybe already taken?");
+        std::process::exit(1);
+    };
+
     println!("Running version {VERSION}");
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");
     for request in server.incoming_requests() {

@@ -38,7 +38,6 @@ print_stdout = "allow"                     # Wee need to print stuff to the cons
 arithmetic_side_effects = "allow"
 branches_sharing_code = "allow"
 default_numeric_fallback = "allow"
-expect_used = "allow"
 indexing_slicing = "allow"
 manual_string_new = "allow"
 min_ident_chars = "allow"
