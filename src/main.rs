@@ -112,20 +112,18 @@ fn main() {
                         .unwrap();
                 };
 
-                for entry in dh {
-                    if let Ok(entry) = entry {
-                        if entry.path().is_file() || entry.path().is_dir() {
-                            html += "<li><a href=\"";
-                            html += &entry.file_name().into_string().unwrap();
-                            html += "\">";
-                            html += &entry.file_name().into_string().unwrap();
-                            html += "</a>";
-                            html += "</li>";
-                        } else {
-                            html += "<li>";
-                            html += &entry.file_name().into_string().unwrap();
-                            html += "</li>";
-                        }
+                for entry in dh.flatten() {
+                    if entry.path().is_file() || entry.path().is_dir() {
+                        html += "<li><a href=\"";
+                        html += &entry.file_name().into_string().unwrap();
+                        html += "\">";
+                        html += &entry.file_name().into_string().unwrap();
+                        html += "</a>";
+                        html += "</li>";
+                    } else {
+                        html += "<li>";
+                        html += &entry.file_name().into_string().unwrap();
+                        html += "</li>";
                     }
                 }
                 html += "</ul>";
