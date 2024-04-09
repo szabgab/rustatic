@@ -29,7 +29,7 @@ struct Cli {
 
 fn main() {
     let args = Cli::parse();
-    dbg!(&args.host);
+    //dbg!(&args.host);
 
     let server_str = format!("{}:{}", &args.host, &args.port);
 
@@ -38,7 +38,7 @@ fn main() {
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");
     for request in server.incoming_requests() {
         //dbg!(request.method());
-        dbg!(request.url());
+        println!("request: {}", request.url());
         //dbg!(request.headers());
         let url = &request.url()[1..]; // remove leading slash
                                        //dbg!(&url);
@@ -48,9 +48,9 @@ fn main() {
         p.push(".html");
         let html_path: std::path::PathBuf = p.into();
 
-        dbg!(&path);
-        dbg!(&html_path);
-        dbg!(&args.nice);
+        // dbg!(&path);
+        // dbg!(&html_path);
+        // dbg!(&args.nice);
         // if path is a file serve it
         // if path is a directory then
         //     list the directory content
@@ -73,7 +73,7 @@ fn main() {
         } else if path.is_dir() {
             // if path does not end in / redirect to the same path with /
             if !request.url().ends_with('/') {
-                dbg!("fixing path");
+                // dbg!("fixing path");
                 let new_url = format!("{}/", request.url());
                 let header = Header {
                     field: HeaderField::from_str("Location").unwrap(),
@@ -127,7 +127,7 @@ fn main() {
                     }
                 }
                 html += "</ul>";
-                dbg!(&html);
+                // dbg!(&html);
                 let header = Header {
                     field: HeaderField::from_str("Content-type").unwrap(),
                     value: AsciiString::from_ascii("text/html").unwrap(),
