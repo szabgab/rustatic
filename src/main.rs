@@ -5,6 +5,7 @@ use std::str::FromStr;
 
 use ascii::AsciiString;
 use clap::Parser;
+use mime_guess::mime;
 use tiny_http::{Header, HeaderField, Response, Server, StatusCode};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -154,17 +155,10 @@ fn redirect_with_trailing_slash(
 }
 
 fn send_file(path: &std::path::PathBuf) -> Response<File> {
-    let content_type = match path.extension() {
-        Some(extension) => match extension.to_str() {
-            Some(ext) => match ext {
-                "json" => "application/json",
-                "js" => "application/javascript",
-                _ => "text/html",
-            },
-            None => "text/html",
-        },
-        None => "text/html",
-    };
+    let content_type = mime_guess::from_path(path)
+        .first()
+        .unwrap_or(mime::TEXT_HTML)
+        .to_string();
 
     let header = Header {
         field: HeaderField::from_str("Content-type").unwrap(),
