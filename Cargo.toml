@@ -16,3 +16,37 @@ homepage = "https://rustatic.code-maven.com/"
 ascii = "1.1"
 tiny_http = "0.12"
 clap = { version = "4.3", features = ["derive"] }
+
+
+[lints.clippy]
+cargo        = { priority = -1, level = "deny" }
+complexity   = { priority = -1, level = "deny" }
+correctness  = { priority = -1, level = "deny" }
+nursery      = { priority = -1, level = "deny" }
+pedantic     = { priority = -1, level = "deny" }
+perf         = { priority = -1, level = "deny" }
+restriction  = { priority = -1, level = "deny" }
+style        = { priority = -1, level = "deny" }
+suspicious   = { priority = -1, level = "deny" }
+
+absolute_paths = "allow"
+arithmetic_side_effects = "allow"
+blanket_clippy_restriction_lints = "allow"
+branches_sharing_code = "allow"
+dbg_macro = "allow"
+default_numeric_fallback = "allow"
+expect_used = "allow"
+implicit_return = "allow"
+indexing_slicing = "allow"
+manual_string_new = "allow"
+min_ident_chars = "allow"
+missing_docs_in_private_items = "allow"
+option_if_let_else = "allow"
+print_stdout = "allow"
+shadow_reuse = "allow"
+single_call_fn = "allow"
+std_instead_of_core = "allow"
+string_slice = "allow"
+str_to_string = "allow"
+too_many_lines = "allow"
+unwrap_used = "allow"
