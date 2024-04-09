@@ -91,10 +91,10 @@ fn main() {
                     )
                     .unwrap();
             } else if !args.indexfile.is_empty() {
-                let path = path.join(&args.indexfile);
-                if path.exists() && path.is_file() {
+                let file_path = path.join(&args.indexfile);
+                if file_path.exists() && file_path.is_file() {
                     request
-                        .respond(Response::from_file(File::open(&path).unwrap()))
+                        .respond(Response::from_file(File::open(&file_path).unwrap()))
                         .unwrap();
                 } else {
                     request
