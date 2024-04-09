@@ -27,6 +27,12 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
+/// if path is a file serve it
+/// if path is a directory then
+///     list the directory content
+///     check if the default file is in the directory and server that (e.g. index.html)
+///     return some error (do we need this?)
+/// else return error
 fn main() {
     let args = Cli::parse();
     //dbg!(&args.host);
@@ -55,12 +61,6 @@ fn main() {
         // dbg!(&path);
         // dbg!(&html_path);
         // dbg!(&args.nice);
-        // if path is a file serve it
-        // if path is a directory then
-        //     list the directory content
-        //     check if the default file is in the directory and server that (e.g. index.html)
-        //     return some error (do we need this?)
-        // else return error
 
         if args.nice && html_path.is_file() {
             request
