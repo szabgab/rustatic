@@ -77,15 +77,7 @@ fn main() {
         } else if path.is_dir() {
             // if path does not end in / redirect to the same path with /
             if !request.url().ends_with('/') {
-                // dbg!("fixing path");
-                let new_url = format!("{}/", request.url());
-                let header = Header {
-                    field: HeaderField::from_str("Location").unwrap(),
-                    value: AsciiString::from_ascii(new_url).unwrap(),
-                };
-                let response = Response::from_string("dir")
-                    .with_status_code(StatusCode::from(301))
-                    .with_header(header);
+                let response = redirect_with_trailing_slash(&request);
                 request.respond(response).unwrap();
             } else if !args.indexfile.is_empty() {
                 let file_path = path.join(&args.indexfile);
@@ -146,6 +138,19 @@ fn main() {
                 .unwrap();
         }
     }
+}
+
+fn redirect_with_trailing_slash(
+    request: &tiny_http::Request,
+) -> Response<std::io::Cursor<Vec<u8>>> {
+    let new_url = format!("{}/", request.url());
+    let header = Header {
+        field: HeaderField::from_str("Location").unwrap(),
+        value: AsciiString::from_ascii(new_url).unwrap(),
+    };
+    Response::from_string("dir")
+        .with_status_code(StatusCode::from(301))
+        .with_header(header)
 }
 
 fn send_file(path: &std::path::PathBuf) -> Response<File> {
