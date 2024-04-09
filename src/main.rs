@@ -145,6 +145,7 @@ fn get_response(path: &std::path::PathBuf) -> Response<File> {
         Some(extension) => match extension.to_str() {
             Some(ext) => match ext {
                 "json" => "application/json",
+                "js" => "application/javascript",
                 _ => "text/html",
             },
             None => "text/html",
