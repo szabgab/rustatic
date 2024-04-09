@@ -83,13 +83,10 @@ fn main() {
                     field: HeaderField::from_str("Location").unwrap(),
                     value: AsciiString::from_ascii(new_url).unwrap(),
                 };
-                request
-                    .respond(
-                        Response::from_string("dir")
-                            .with_status_code(StatusCode::from(301))
-                            .with_header(header),
-                    )
-                    .unwrap();
+                let response = Response::from_string("dir")
+                    .with_status_code(StatusCode::from(301))
+                    .with_header(header);
+                request.respond(response).unwrap();
             } else if !args.indexfile.is_empty() {
                 let file_path = path.join(&args.indexfile);
                 if file_path.exists() && file_path.is_file() {
