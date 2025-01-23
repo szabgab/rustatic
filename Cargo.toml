@@ -34,7 +34,9 @@ blanket_clippy_restriction_lints = "allow" # It is intentional for extreme clipp
 implicit_return = "allow"                  # This is the rust-way, isn't it?
 print_stdout = "allow"                     # Wee need to print stuff to the console.
 single_call_fn = "allow"                   # We want shorter functions even if we only use them in one place.
-
+arbitrary_source_item_ordering = "allow"   # I think the main founction should be either the first or the last.
+                                           # It should not be in the abc order of functions.
+                                           # Related attribute should be next to each other. e.g. hostname and port number
 
 arithmetic_side_effects = "allow"
 branches_sharing_code = "allow"
@@ -46,3 +48,4 @@ option_if_let_else = "allow"
 std_instead_of_core = "allow"
 string_slice = "allow"
 unwrap_used = "allow"
+

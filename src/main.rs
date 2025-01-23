@@ -1,7 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::path::Path;
-use std::str::FromStr;
+use std::str::FromStr as _;
 
 use ascii::AsciiString;
 use clap::Parser;
@@ -10,6 +10,7 @@ use tiny_http::{Header, HeaderField, Response, Server, StatusCode};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
+#[expect(clippy::arbitrary_source_item_ordering, reason="host and port are related and thus should be together")]
 #[derive(Parser)]
 #[command(version)]
 struct Cli {
