@@ -1,9 +1,7 @@
 use std::fs;
 use std::fs::File;
-use std::io::Write;
 use std::io::Read;
-
-
+use std::io::Write;
 
 fn main() {
     let source = read_file("../README.md");
@@ -25,22 +23,20 @@ fn main() {
     });
     let html = template.render(&globals).unwrap();
 
-
     fs::create_dir_all("../_site").expect("could no create folder");
     let mut file = File::create("../_site/index.html").unwrap();
     writeln!(&mut file, "{}", html).unwrap();
-
 }
 
-fn read_file(filepath: &str) -> String{
+fn read_file(filepath: &str) -> String {
     match File::open(filepath) {
         Ok(mut file) => {
             let mut content = String::new();
             file.read_to_string(&mut content).unwrap();
-            return content;
-        },
+            content
+        }
         Err(error) => {
             panic!("Error opening file {}: {}", filepath, error);
-        },
+        }
     }
 }
