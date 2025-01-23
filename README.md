@@ -58,6 +58,12 @@ git clone https://github.com/szabgab/rustatic
 cd rustatic
 ```
 
+It is recommended to set up the pre-commit hooks:
+
+* Install [pre-commit](https://pre-commit.com/)
+* In the `rustatic` folder run `pre-commit install`.
+
+
 Then you can run the command like this:
 
 ```
@@ -71,11 +77,11 @@ cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /
 ## Release and publish
 
 * Update version number in Cargo.toml and in the comment below.
-* git add .
-* git commit -m "update version to v0.2.6"
-* git tag -a v0.2.6 -m "publish version v0.2.6"
-* git push --tags
-* cargo publish
+* `git add .`
+* `git commit -m "update version to v0.2.6"`
+* `git tag -a v0.2.6 -m "publish version v0.2.6"`
+* `git push --tags`
+* `cargo publish`
 
 ## TODO
 
