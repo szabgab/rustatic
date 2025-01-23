@@ -1,4 +1,4 @@
-iname: Security audit
+name: Security audit
 
 on:
   schedule:
@@ -7,6 +7,7 @@ on:
     paths:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
+      - '**/.github/workflows/*'
 
 jobs:
   audit:
