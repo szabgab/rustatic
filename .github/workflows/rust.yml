@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Report rust version
+      run: |
+        rustc -vV
+        rustup update
+        rustc -vV
+
     - uses: actions/checkout@v4
     - name: Check format
       run: cargo fmt --check
