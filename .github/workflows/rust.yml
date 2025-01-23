@@ -73,7 +73,7 @@ jobs:
         path: target/release/rustatic.exe
 
   release:
-    needs: [build-windows]
+    needs: [build-linux, build-macos, build-windows]
     runs-on: ubuntu-latest
 
     steps:
