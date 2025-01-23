@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html>
   <head>
-
-    {% if site.google_analytics %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ site.google_analytics }}');
-      </script>
-    {% endif %}
-    <meta charset="UTF-8">
-
-{% seo %}
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
   <body>
-    <header class="page-header" role="banner">
-      <h1 class="project-name"><a href="/">{{ page.title | default: site.title | default: site.github.repository_name }}</a></h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-    </header>
+    <section class="section">
+      <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div id="navbar-home" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="/" class="navbar-item">Home</a>
+          <a href="https://github.com/szabgab/rustatic" class="navbar-item">GitHub</a>
+          <a href="https://code-maven.com/" class="navbar-item">Code-Maven</a>
+          <a href="https://szabgab.com/" class="navbar-item">Gábor Szabó</a>
+          <a href="https://rust.code-maven.com/" class="navbar-item">Rust Maven</a>
+        </div>
+      </div>
+    </nav>
+      </div>
+    </section>
 
-    <main id="content" class="main-content" role="main">
-      {{ content }}
+    <section class="section">
+      <div class="container">
+        {{content}}
+      </div>
+    </section>
 
-      <footer class="site-footer">
-        {% if site.github.is_project_page %}
-          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-        {% endif %}
-        <span class="site-footer-credits">"Tell me and I forget. Teach me and I remember. Involve me and I learn." Benjamin Franklin and Confucius</span>
-      </footer>
-    </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <a href="https://github.com/szabgab/rustatic">source</a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
-
