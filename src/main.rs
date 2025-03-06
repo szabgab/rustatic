@@ -54,7 +54,7 @@ fn main() {
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");
     for request in server.incoming_requests() {
         //dbg!(request.method());
-        println!("request: {}", request.url());
+        print!("request: {} ", request.url());
         //dbg!(request.headers());
         let url = &request.url()[1..]; // remove leading slash
                                        //dbg!(&url);
@@ -69,29 +69,39 @@ fn main() {
         // dbg!(&args.nice);
 
         if args.nice && html_path.is_file() {
+            println!("200 OK {}", html_path.metadata().unwrap().len());
             request
                 .respond(Response::from_file(File::open(&html_path).unwrap()))
                 .unwrap();
         } else if !path.exists() {
+            println!("404 File {} Not Found", path.display());
             request
                 .respond(
                     Response::from_string("File Not found").with_status_code(StatusCode::from(404)),
                 )
                 .unwrap();
         } else if path.is_file() {
+            println!(
+                "200 OK {} {}",
+                path.metadata().unwrap().len(),
+                path.display()
+            );
             request.respond(send_file(&path)).unwrap();
         } else if path.is_dir() {
             // if path does not end in / redirect to the same path with /
             if !request.url().ends_with('/') {
                 let response = redirect_with_trailing_slash(&request);
+                println!("301 Redirect with trailing slash");
                 request.respond(response).unwrap();
             } else if !args.indexfile.is_empty() {
                 let file_path = path.join(&args.indexfile);
                 if file_path.exists() && file_path.is_file() {
+                    println!("200 OK Indexfile {}", file_path.metadata().unwrap().len());
                     request
                         .respond(Response::from_file(File::open(&file_path).unwrap()))
                         .unwrap();
                 } else {
+                    println!("404 Indexfile File {} Not Found", file_path.display());
                     request
                         .respond(
                             Response::from_string("Could not find indexfile")
@@ -100,10 +110,12 @@ fn main() {
                         .unwrap();
                 }
             } else {
+                println!("200 OK Directory listing");
                 let response = directory_listing(&path);
                 request.respond(response).unwrap();
             }
         } else {
+            println!("500 We are confused");
             request
                 .respond(
                     Response::from_string("We are confused.")
