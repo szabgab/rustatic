@@ -1,6 +1,6 @@
 [package]
 name = "rustatic"
-version = "0.2.6"
+version = "0.2.7"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Web server for static site used primarily locally during development"
@@ -29,7 +29,7 @@ restriction  = { priority = -1, level = "deny" }
 style        = { priority = -1, level = "deny" }
 suspicious   = { priority = -1, level = "deny" }
 
-absolute_paths = "allow"                   # I actually like absoulte pathes when using code.
+absolute_paths = "allow"                   # I actually like absolute paths when using code.
 blanket_clippy_restriction_lints = "allow" # It is intentional for extreme clippy.
 implicit_return = "allow"                  # This is the rust-way, isn't it?
 print_stdout = "allow"                     # Wee need to print stuff to the console.

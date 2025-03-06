@@ -78,8 +78,8 @@ cargo run -- --indexfile index.html --nice --host 127.0.0.1 --port 5000 --path /
 
 * Update version number in Cargo.toml and in the comment below.
 * `git add .`
-* `git commit -m "update version to v0.2.6"`
-* `git tag -a v0.2.6 -m "publish version v0.2.6"`
+* `git commit -m "update version to v0.2.7"`
+* `git tag -a v0.2.6 -m "publish version v0.2.7"`
 * `git push --tags`
 * `cargo publish`
 
