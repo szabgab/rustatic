@@ -59,7 +59,12 @@ fn main() {
         let url = &request.url()[1..]; // remove leading slash
                                        //dbg!(&url);
                                        //dbg!(&args.path);
-        let path = args.path.join(url);
+        let url_path = if url.contains('?') {
+            url.split('?').next().unwrap()
+        } else {
+            url
+        };
+        let path = args.path.join(url_path);
         let mut p = path.clone().into_os_string();
         p.push(".html");
         let html_path: std::path::PathBuf = p.into();
