@@ -38,6 +38,7 @@ arbitrary_source_item_ordering = "allow"   # I think the main founction should b
                                            # It should not be in the abc order of functions.
                                            # Related attribute should be next to each other. e.g. hostname and port number
 
+use_debug = "allow"
 arithmetic_side_effects = "allow"
 branches_sharing_code = "allow"
 default_numeric_fallback = "allow"

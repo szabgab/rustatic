@@ -52,10 +52,14 @@ fn main() {
 
     println!("Running version {VERSION}");
     println!("Visit http://{server_str} Press Ctrl-C to stop the server.");
-    for request in server.incoming_requests() {
-        //dbg!(request.method());
-        print!("request: {} ", request.url());
-        //dbg!(request.headers());
+    for mut request in server.incoming_requests() {
+        println!();
+        println!("request: {} {} ", request.method(), request.url());
+        println!("Headers: {:?}", request.headers());
+        let mut content = String::new();
+        request.as_reader().read_to_string(&mut content).unwrap();
+        println!("Content: {content}");
+
         let url = &request.url()[1..]; // remove leading slash
                                        //dbg!(&url);
                                        //dbg!(&args.path);
