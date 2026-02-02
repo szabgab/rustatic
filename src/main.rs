@@ -38,7 +38,7 @@ struct Cli {
 ///     list the directory content
 ///     check if the default file is in the directory and server that (e.g. index.html)
 ///     return some error (do we need this?)
-/// else return error
+/// else return error.
 fn main() {
     let args = Cli::parse();
     //dbg!(&args.host);
