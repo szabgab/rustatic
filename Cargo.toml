@@ -15,7 +15,7 @@ homepage = "https://rustatic.code-maven.com/"
 [dependencies]
 ascii = "1.1"
 tiny_http = "0.12"
-clap = { version = "4.3", features = ["derive"] }
+clap = { version = "4.5", features = ["derive"] }
 mime_guess = "2.0.4"
 
 [lints.clippy]
