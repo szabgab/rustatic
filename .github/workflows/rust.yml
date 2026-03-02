@@ -33,7 +33,7 @@ jobs:
       run: ls -l target/release
 
     - name: Linux binary
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: rustatic-linux-release
         path: target/release/rustatic
@@ -51,7 +51,7 @@ jobs:
       run: ls -l target/release
 
     - name: macOS binary
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: rustatic-macos-release
         path: target/release/rustatic
@@ -69,7 +69,7 @@ jobs:
       run: ls -l target/release
 
     - name: MS Windows binary
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: rustatic-windows-release
         path: target/release/rustatic.exe
@@ -80,19 +80,19 @@ jobs:
 
     steps:
     - name: MS Windows binary
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: rustatic-windows-release
         path: release/rustatic.exe
 
     - name: Linux binary
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: rustatic-linux-release
         path: release/rustatic-linux
 
     - name: macOS binary
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: rustatic-macos-release
         path: release/rustatic-macos
